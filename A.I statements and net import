@@ -1,0 +1,252 @@
+def log_off(name,password):
+    while True:
+        try:
+            enter_log = input("are you sure in logging off your account? (Y/N): ").upper()
+
+            if enter_log  == "Y":
+                print(f"thankyou! {name} for having fun with me, i wish you to comeback anytime!")
+                break
+            elif enter_log == "N":
+                home_page2(name,password)
+                break
+            else:
+                print("wrong input, please try again...")
+        except:
+            print("wrong credentials, please try again...")
+
+def wikipedia_fun(name,password):
+    print("================= < chatbot (wikipedia-mode) > =========================")
+    while True:
+        try:
+            input_wikipedia = input("Enter your message here: ")
+            result = wikipedia.summary(input_wikipedia, sentences=2)
+            print(result)
+
+            if "back" in input_wikipedia:
+                chatbot(name,password)
+                break
+            elif "previous" in input_wikipedia:
+                chatbot(name,password)
+                break
+            else:
+                print("sorry i cant understand... (if you want to go back to previous page)//tell me to turn you back//")
+        except:
+            print("sorry, i can't understand - from wikipedia_fun")
+
+
+
+
+def chatbot(name,password):
+    print("================== < CHATBOT > ======================")
+    print(f"welcome to chatbot {name}!")
+    print("sorry this feature is still under maintenance....")
+    while True:
+        try:
+            input_bot = input("Enter your message here: ")
+
+            if input_bot == "hello":
+                print(f"hello! {name}")
+
+            elif input_bot == "how are you?":
+                print("i'm fine how about you?")
+
+            elif input_bot == "i'm fine too":
+                print("glad to hear that..hehehe")
+
+            elif input_bot == "im ok":
+                print("glad to hear that..hehe")
+
+            elif input_bot == "i'm ok":
+                print("glad to hear that..hehe")
+
+            elif 'wikipedia' in input_bot:
+                print("loading wikipedia...")
+                wikipedia_fun(name,password)
+                break
+
+            elif "back" in input_bot:
+                home_page2(name,password)
+                break
+
+            elif "previous" in input_bot:
+                home_page2(name,password)
+                break
+
+            else:
+                print("sorry i can't understand.. can you repeat it?")
+        except:
+            print("sorry, i can't understand.... can you repeat it?")
+
+def home_page2(name,password):
+    print("=================== <SetUp> =======================")
+    print(f"||nickname: {name}                                ||")
+    print(f"||password: {password}                            ||")
+    print("===================================================")
+    print("A.) change name")
+    print("B.) change password")
+    print("C.) chat-bot")
+    print("D.) log off")
+    while True:
+        try:
+            option_change = input("choose the function : ").upper()
+
+            if option_change == "A":
+                print("change name..loading...")
+                change_name(name,password)
+                break
+            elif option_change == "B":
+                print("change password..loading...")
+                change_password(name,password)
+                break
+            elif option_change == "C":
+                chatbot(name,password)
+                break
+            elif option_change == "D":
+                log_off(name, password)
+                break
+            else:
+                print("wrong credentials, please try again...")
+        except ValueError:
+            print("wrong credentials, please try again...")
+
+def change_pass2(name,password):
+    print(f"hello! {name}!, change your password")
+    Enter_pass = input("Enter your new password here: ")
+    i_password = Enter_pass
+    input_password = i_password.replace("a", "9010")
+    input_value = input_password.replace("m", "21")
+    input_password = input_value[::-1]
+    password = input_password
+
+
+    print(f"your new password is: {Enter_pass}")
+    print(f"encoded as:{input_password}")
+
+    while True:
+        try:
+            input_choice = input("you want to go back to homepage? (y/n): ").lower()
+
+            if input_choice == "y":
+                home_page2(name,password)
+                return password
+            elif input_choice == 'n':
+                change_password(name,password)
+                return password
+            else:
+                print("wrong credentials, please try again...")
+        except ValueError:
+            print("wrong credentials, please try again...")
+
+
+def change_password(name,password):
+    while True:
+        try:
+            verify_pass = input("Enter your current password: ")
+            input_ps = password[::-1]
+            input_value = input_ps.replace("21", "m")
+            input_p = input_value.replace("9010", "a")
+
+            if verify_pass == input_p:
+                print("correct credentials..")
+                change_pass2(name,password)
+                break
+
+            elif verify_pass != input_p:
+                print("incorrect credentials,please try again...")
+
+        except ValueError:
+            print("wrong credentials, please try again...")
+
+
+
+
+
+def change_name(name,password):
+    input_new_name = input("Enter your new name here: ").lower()
+    name = input_new_name
+
+
+    while True:
+        try:
+            input_back = input("do you want to go back in home page (Y/N): ").upper()
+            if input_back == "Y":
+                home_page2(name,password)
+                return name
+            elif input_back == "N":
+                change_name(name,password)
+                return name
+            else:
+                print("wrong credentials, please try again...")
+        except ValueError as x:
+            print("wrong credentials, please try again...")
+
+
+class Account:
+    def __init__(self,name,password):
+        self.name = input_nickname
+        self.password = input_password
+
+
+    def profile(self,name,password):
+        print("================ <welcome> ========================")
+        print(f"Hello {self.name}!")
+        print(f"password encrypted as: {self.password}")
+
+    def home_page(self, name, password ):
+        print("=================== <SetUp> =======================================")
+        print(f"||nickname: {self.name}                                         ||")
+        print(f"||password: {self.password}                                     ||")
+        print("===================================================================")
+        print("A.) change name")
+        print("B.) change password")
+        print("C.) chatbot")
+        print("D.) log off")
+        while True:
+            try:
+                option_change = input(" choose the function : ").upper()
+                if option_change == "A":
+                    print("change name..loading...")
+                    change_name(name,password)
+                    break
+                elif option_change == "B":
+                    print("change password..loading...")
+                    change_password(name,password)
+                    break
+                elif option_change == "C":
+                    print("chatbot loading...")
+                    chatbot(name,password)
+                    break
+                elif option_change == "D":
+                    log_off(name,password)
+                    break
+
+                else:
+                    print("wrong credentials, please try again...")
+            except ValueError:
+                print("wrong credentials, please try again...")
+
+
+import wikipedia
+
+while True:
+    try:
+        print("=========================== < Login > ================================")
+        input_nickname = input("enter your name here: ").lower()
+        input_password = input("Enter your password here: ")
+        print("==============================================================")
+
+        if input_nickname == 'dashiki':
+            if input_password == "markmorsy":
+                input_password = input_password.replace("a", "9010")
+                input_value = input_password.replace("m", "21")
+                input_password = input_value[::-1]
+                p = Account(input_nickname,input_password)
+                p.profile(input_nickname,input_password)
+                p.home_page(input_nickname,input_password)
+                break
+            else:
+                print("wrong name or password, please try again...")
+        else:
+            print("wrong name or password, please try again...")
+    except ValueError as x:
+        print(f"wrong credentials: {x}, please try again...")
